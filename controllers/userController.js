@@ -18,7 +18,7 @@ exports.creatuser = (req,res) => {
     });
 };
 
-exports.getuserbyid = (req, res) => (req,res) => {
+exports.getuserbyid = (req,res) => {
     res
     .status(500)
     .json({
