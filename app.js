@@ -127,28 +127,36 @@ const deleteuser = (req,res) => {
         message: 'this route is not yet defined'
     });
 };
+//routers
+const tourRouter = express.Router();
+const usersRouter = express.Router();
 
-app
-.route('/api/v1/tours')
+tourRouter
+.route('/')
 .get(getalltours)
 .post(creattour);
 
-app
-.route('/api/v1/tours/:id')
+tourRouter
+.route('/:id')
 .get(gettourbyid)
 .patch(updatetour)
 .delete(deletetour);
 
-app
-.route('/api/v1/users')
+usersRouter
+.route('/')
 .get(getallusers)
 .post(creatuser);
 
-app
-.route('/api/v1/user/:id')
+usersRouter
+.route('/:id')
 .get(getuserbyid)
 .patch(udpateuser)
 .delete(deleteuser)
+
+app.use('/api/v1/tours',tourRouter);
+app.use('/api/v1/users',usersRouter);
+
+
 
 const port = 3000
 app.listen(port, () =>{
