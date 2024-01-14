@@ -9,23 +9,18 @@ mongoose.connect(db, {}).then(() =>{
     console.log("database is connected");
 });
 
-const tourschema = new mongoose.Schema({
-    name: {
-        type: String,
-        require: [true, 'a tour must have a name'],
-        unique: true
-    },
-    rating: {
-        type: Number,
-        default: 4.5
-    },
-    price: {
-        type: Number,
-        require: [true, 'a tour must have a price']
-    }
-});
+// const testtour= new Tour({
+//     name: "The Park Camper",
+//     price: 997
+// })
 
-const Tour = mongoose.model('Tour',tourschema);
+// testtour.save()
+// .then(doc => {
+//     console.log(doc);
+// })
+// .catch(err => {
+//     console.log(err);
+// });
 
 const app = require('./app');
 
