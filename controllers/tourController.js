@@ -1,5 +1,12 @@
 const Tour = require('../modules/tourmodule');
 
+exports.aliastopfivecheap = (req, res, next) => {
+    req.query.limit= '5';
+    req.query.sort = '-ratingsAvreg,price';
+    req.query.fields = 'name,price,ratingsAvreg,summary,difficulty';
+    next();
+}
+
 exports.getalltours = async (req,res) => {
     try{
         //filtering
