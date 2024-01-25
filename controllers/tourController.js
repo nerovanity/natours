@@ -12,16 +12,16 @@ exports.getalltours = async (req, res) => {
   try {
     const features = new APIfeatures(Tour.find(), req.query)
       .filter()
-      .sorting()
-      .limiting()
-      .pagination();
+      .sort()
+      .limitFields()
+      .paginate();
     const tours = await features.query;
 
     res.status(200).json({
       status: 'success',
       results: tours.length,
       data: {
-        tours: tours,
+        tours
       },
     });
   } catch (err) {
