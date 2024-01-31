@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const slugify = require('slugify');
 
 const tourschema = new mongoose.Schema({
     name: {
@@ -7,6 +8,7 @@ const tourschema = new mongoose.Schema({
         unique: true,
         trim: true
     },
+    slug: String,
     duration: {
         type: Number,
         required: [true, 'a tour need duration']
@@ -52,6 +54,11 @@ const tourschema = new mongoose.Schema({
         select: false
     },
     startDates: [Date]
+});
+// DOCUMENT MIDDLEWARE: runs before .save() .create()
+tourschema.pre('save',function(next){
+    this.slug = slugify(this.name, {lower: true});
+    next();
 });
 
 const Tour = mongoose.model('Tour',tourschema);
